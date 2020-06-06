@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+JSON.parse(File.read('db/seeds/dishes.json')).each do |dish|
+  Dish.create!(dish)
+end
+
+puts "The database now has #{Dish.count} dishes."
