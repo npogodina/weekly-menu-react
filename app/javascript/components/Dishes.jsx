@@ -10,22 +10,35 @@ const Dishes = (props) => {
 
   const dishComponents = props.dishList.map((dish, i) => {
     return (
-      <li key={dish.id}>
+      
         <Dish
+          key={dish.id}
           id={dish.id}
           name={dish.name}
           servings={dish.servings}
           meal={dish.meal}
           recipe={dish.recipe}
         />
-      </li>
+      
     );
   });
 
   return (
-    <ul className="">
-      {dishComponents}
-    </ul>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Meal</th>
+          <th scope="col">Servings</th>
+          <th scope="col">Recipe?</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        {dishComponents}
+      
+      </tbody>
+    </table>
   );
 };
 

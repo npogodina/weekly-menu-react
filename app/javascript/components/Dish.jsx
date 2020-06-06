@@ -29,18 +29,12 @@ const Dish = (props) => {
   // };
 
   return (
-    <div className="">
-      {/* <h3 className={props.present ? 'present' : 'absent'}>{props.fullName}</h3> */}
-      <input value={props.name} />
-      <ul>
-        {/* <li>Class: C13</li> */}
-        <li>Birthday: {props.meal}</li>
-        <li>Email: {props.servings}</li>
-      </ul>
-      {/* <button onClick={onButtonClick}>
-        Mark {props.present ? 'Absent' : 'Present'}
-      </button> */}
-    </div>
+    <tr className="list-group-item-action">
+      <th scope="row"> {props.name} </th>
+      <th scope="row"> {props.meal} </th>
+      <th scope="row"> {props.servings} </th>
+      <th scope="row"> {props.recipe? "Yes!" : "N/A"} </th>
+    </tr>
   );
 };
 
