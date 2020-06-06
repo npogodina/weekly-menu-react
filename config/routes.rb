@@ -5,5 +5,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :dishes
   end 
+
+  get "*page", to: "welcome#show"
+
+  # get "*page", to: "welcome#show", constraints: ->(req) do
+  #   !req.xhr? && req.format.html?
+  # end
   
 end
