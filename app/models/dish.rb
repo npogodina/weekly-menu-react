@@ -1,0 +1,4 @@
+class Dish < ApplicationRecord
+
+  validates :name, presence: true, uniqueness: true
+end
