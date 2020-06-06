@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-// import StudentCollection from './components/StudentCollection';
-// import NewStudentForm from './components/NewStudentForm';
+import Dish from './Dish';
 // import './App.css';
 
-const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
+// const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
 
-const Dishes = () => {
-  const [dishList, setDishList] = useState([]);
-  
-  useEffect(() => {
-    axios.get(API_DISHES_INDEX)
-      .then((response) => {
-        const apiDishList = response.data;
-        setDishList(apiDishList);
-      })
-      .catch((error) => {
-        // Still need to handle errors
-        // setErrorMessage(error.message);
-      });
-  }, []);
+import PropTypes from 'prop-types';
+
+const Dishes = (props) => {
+
+  const dishComponents = props.dishList.map((dish, i) => {
+    return (
+      <li key={dish.id}>
+        <Dish
+          id={dish.id}
+          name={dish.name}
+          servings={dish.servings}
+          meal={dish.meal}
+          recipe={dish.recipe}
+        />
+      </li>
+    );
+  });
 
   return (
-    <div>
-      Dishes!
-    </div>
+    <ul className="">
+      {dishComponents}
+    </ul>
   );
 };
 
