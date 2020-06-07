@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
 // import './Student.css';
 
 const NewDishForm = (props) => {
+
+  let history = useHistory();
 
   const [formFields, setFormFields] = useState({
     name: "",
@@ -24,15 +27,8 @@ const NewDishForm = (props) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-
     props.addDishCallback(formFields);
-
-    // setFormFields({
-    //   name: "",
-    //   // meal: "",
-    //   // servings: "",
-    //   // recipe: ""
-    // });
+    history.push(`/dishes/`)
   };
 
   return (

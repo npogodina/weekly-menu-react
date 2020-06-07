@@ -28,6 +28,7 @@ class Api::DishesController < ApplicationController
       render json: dish.as_json(
         only: [:id, :name, :meal, :servings, :recipe]
       ), status: :created  
+      # redirect_to: dish_path(dish)
     else 
       render json: { errors: dish.errors.messages }, status: :bad_request
       return
