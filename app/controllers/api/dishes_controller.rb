@@ -2,7 +2,10 @@ class Api::DishesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    dishes = Dish.order(:name).as_json(only: [:id, :name, :meal, :servings, :recipe])
+    dishes = Dish.order(:name).as_json(
+      only: [:id, :name, :servings, :recipe, :meals],
+      include: {:meals => { :only => [:id, :name] }}
+    )
     render json: dishes, status: :ok
   end
 
@@ -38,6 +41,6 @@ class Api::DishesController < ApplicationController
   private
 
   def dish_params
-    params.permit(:name, :meal, :servings, :recipe)
+    params.permit(:name, :meals, :servings, :recipe)
   end
 end
