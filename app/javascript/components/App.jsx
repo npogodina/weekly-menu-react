@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 import Hello from "./Hello"
 import Dishes from "./Dishes"
+import Navbar from "./Navbar"
 
 const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
 
@@ -27,15 +28,20 @@ const App = () => {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" render={() => ("Home!")} />
-        <Route path="/hello" render={() => <Hello/>} />
-        <Route path="/dishes" render={() => 
-          <Dishes dishList = {dishList}/>
-        } />
-      </Switch> 
-    </BrowserRouter>
+    <div>
+      <header>
+        <Navbar />
+      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" render={() => ("Home!")} />
+          <Route path="/hello" render={() => <Hello/>} />
+          <Route path="/dishes" render={() => 
+            <Dishes dishList = {dishList}/>
+          } />
+        </Switch> 
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -24,21 +24,24 @@ const Dishes = (props) => {
   });
 
   return (
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Meal</th>
-          <th scope="col">Servings</th>
-          <th scope="col">Recipe?</th>
-        </tr>
-      </thead>
-      <tbody>
-      
-        {dishComponents}
-      
-      </tbody>
-    </table>
+    <div className="container mt-5">
+      <h1>The Dishes:</h1>
+      <table className="table">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Meal</th>
+            <th scope="col">Servings</th>
+            <th scope="col">Recipe?</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          {dishComponents}
+        
+        </tbody>
+      </table>
+    </div>
   );
 };
 
