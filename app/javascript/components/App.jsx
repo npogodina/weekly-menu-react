@@ -6,10 +6,10 @@ import PropTypes from "prop-types"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 import Hello from "./Hello";
-import Dishes from "./Dishes";
+import Dishes from "./dishes/Dishes";
 import Navbar from "./Navbar";
-import DishPage from "./DishPage";
-import NewDishForm from "./NewDishForm";
+import DishPage from "./dishes/DishPage";
+import NewDishForm from "./dishes/NewDishForm";
 
 const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
 
