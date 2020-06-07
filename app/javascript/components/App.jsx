@@ -5,9 +5,10 @@ import PropTypes from "prop-types"
 
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
-import Hello from "./Hello"
-import Dishes from "./Dishes"
-import Navbar from "./Navbar"
+import Hello from "./Hello";
+import Dishes from "./Dishes";
+import Navbar from "./Navbar";
+import DishPage from "./DishPage";
 
 const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
 
@@ -39,7 +40,7 @@ const App = () => {
           <Route path="/hello" render={() => <Hello/>} />
           
           <Route path="/dishes/:id" render={() => 
-            ("Dish!")
+            <DishPage dish={dishList}/>
           } />
 
           <Route path="/dishes" render={() => 
