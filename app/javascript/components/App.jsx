@@ -9,6 +9,7 @@ import Hello from "./Hello";
 import Dishes from "./Dishes";
 import Navbar from "./Navbar";
 import DishPage from "./DishPage";
+import NewDishForm from "./NewDishForm";
 
 const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
 
@@ -28,6 +29,20 @@ const App = () => {
       });
   }, []);
 
+  const addDish = (dish) => {
+    axios.post(API_DISHES_INDEX, dish)
+      .then((response) => {
+        // What should we do when we know the post request worked?
+        const updatedData = [...dishList, response.data];
+        setDishList(updatedData);
+        // setErrorMessage('');
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  }
+
   return (
     <div>
       <BrowserRouter>
@@ -39,6 +54,10 @@ const App = () => {
           <Route exact path="/" render={() => ("Home!")} />
           <Route path="/hello" render={() => <Hello/>} />
           
+          <Route path="/dishes/new" render={() => 
+            <NewDishForm addDishCallback={addDish}/>
+          } />
+
           <Route path="/dishes/:id" render={() => 
             <DishPage dish={dishList}/>
           } />

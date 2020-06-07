@@ -1,4 +1,6 @@
 class Api::DishesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     dishes = Dish.order(:name).as_json(only: [:id, :name, :meal, :servings, :recipe])
     render json: dishes, status: :ok
