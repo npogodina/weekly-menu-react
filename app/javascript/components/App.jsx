@@ -29,13 +29,19 @@ const App = () => {
 
   return (
     <div>
-      <header>
-        <Navbar />
-      </header>
       <BrowserRouter>
+        <header>
+          <Navbar />
+        </header>
+
         <Switch>
           <Route exact path="/" render={() => ("Home!")} />
           <Route path="/hello" render={() => <Hello/>} />
+          
+          <Route path="/dishes/:id" render={() => 
+            ("Dish!")
+          } />
+
           <Route path="/dishes" render={() => 
             <Dishes dishList = {dishList}/>
           } />

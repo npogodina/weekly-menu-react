@@ -1,9 +1,17 @@
 import React from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // import './Student.css';
 
 const Dish = (props) => {
+
+  let history = useHistory();
+
+  function handleClick(e) {
+    // e.preventDefault();
+    history.push(`/dishes/${props.id}`)
+  }
 
   // Event callback functions
   // const onButtonClick = () => {
@@ -29,8 +37,8 @@ const Dish = (props) => {
   // };
 
   return (
-    <tr className="list-group-item-action">
-      <th scope="row"> {props.name} </th>
+    <tr className="list-group-item-action" onClick={handleClick}>
+      <th scope="row"> <Link to={`/dishes/${props.id}`}>{props.name}</Link> </th>
       <th scope="row"> {props.meal} </th>
       <th scope="row"> {props.servings} </th>
       <th scope="row"> {props.recipe? "Yes!" : "N/A"} </th>
