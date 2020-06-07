@@ -10,13 +10,31 @@ class Api::DishesController < ApplicationController
     if dish
       render json: dish.as_json(
         only: [:id, :name, :meal, :servings, :recipe]
-      )
+      ), status: :ok
     else 
       render json: { errors: ["Not Found"] }, status: :not_found
     end
   end
 
+  # def new
+  #   @dish = Dish.new
+  # end
+
+  def create
+    dish = Dish.new(dish_params) 
+    if dish.save
+      render json: dish.as_json(
+        only: [:id, :name, :meal, :servings, :recipe]
+      ), status: :created  
+    else 
+      render json: { errors: dish.errors.messages }, status: :bad_request
+      return
+    end
+  end
+
+  private
+
   def dish_params
-    # params.permit(:title, :overview, :release_date, :total_inventory, :available_inventory)
+    params.permit(:name, :meal, :servings, :recipe)
   end
 end
