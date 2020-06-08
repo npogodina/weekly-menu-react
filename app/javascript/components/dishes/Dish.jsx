@@ -36,10 +36,15 @@ const Dish = (props) => {
   //   });
   // };
 
+  let meals = [];
+  props.meals.forEach(meal => {
+    meals.push(meal.name);
+  });
+
   return (
     <tr className="list-group-item-action" onClick={handleClick}>
       <th scope="row"> <Link to={`/dishes/${props.id}`}>{props.name}</Link> </th>
-      <th scope="row"> {props.meal} </th>
+      <th scope="row"> {meals.join(", ")} </th>
       <th scope="row"> {props.servings} </th>
       <th scope="row"> {props.recipe? "Yes!" : "N/A"} </th>
     </tr>

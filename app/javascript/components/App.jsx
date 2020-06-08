@@ -53,18 +53,19 @@ const App = () => {
         <Switch>
           <Route exact path="/" render={() => ("Home!")} />
           <Route path="/hello" render={() => <Hello/>} />
+
+          <Route exact path="/dishes" render={() => 
+            <Dishes dishList = {dishList}/>
+          } />
           
-          <Route path="/dishes/new" render={() => 
+          <Route exact path="/dishes/new" render={() => 
             <NewDishForm addDishCallback={addDish}/>
           } />
 
-          <Route path="/dishes/:id" render={() => 
-            <DishPage dish={dishList}/>
+          <Route exact path="/dishes/:id" render={() => 
+            <DishPage dishList={dishList}/>
           } />
 
-          <Route path="/dishes" render={() => 
-            <Dishes dishList = {dishList}/>
-          } />
         </Switch> 
       </BrowserRouter>
     </div>

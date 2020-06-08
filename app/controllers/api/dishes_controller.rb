@@ -14,7 +14,8 @@ class Api::DishesController < ApplicationController
 
     if dish
       render json: dish.as_json(
-        only: [:id, :name, :meal, :servings, :recipe]
+        only: [:id, :name, :servings, :recipe, :meals],
+        include: {:meals => { :only => [:id, :name] }}
       ), status: :ok
     else 
       render json: { errors: ["Not Found"] }, status: :not_found

@@ -3,8 +3,6 @@ import {useHistory} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
-// import './Student.css';
-
 const NewDishForm = (props) => {
 
   let history = useHistory();

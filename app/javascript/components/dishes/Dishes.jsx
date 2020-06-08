@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Dish from './Dish';
-// import './App.css';
-
-// const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
 
 import PropTypes from 'prop-types';
 
 const Dishes = (props) => {
+
+  console.log(props);
 
   const dishComponents = props.dishList.map((dish, i) => {
     return (
@@ -16,8 +15,8 @@ const Dishes = (props) => {
           id={dish.id}
           name={dish.name}
           servings={dish.servings}
-          meal={dish.meal}
           recipe={dish.recipe}
+          meals={dish.meals}
         />
       
     );
@@ -30,7 +29,7 @@ const Dishes = (props) => {
         <thead className="thead-dark">
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Meal</th>
+            <th scope="col">Meals</th>
             <th scope="col">Servings</th>
             <th scope="col">Recipe?</th>
           </tr>
