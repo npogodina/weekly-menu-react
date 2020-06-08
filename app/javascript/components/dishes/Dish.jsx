@@ -37,9 +37,12 @@ const Dish = (props) => {
   // };
 
   let meals = [];
-  props.meals.forEach(meal => {
-    meals.push(meal.name);
-  });
+
+  if (props.meals) {
+    props.meals.forEach(meal => {
+      meals.push(meal.name);
+    });
+  };
 
   return (
     <tr className="list-group-item-action" onClick={handleClick}>

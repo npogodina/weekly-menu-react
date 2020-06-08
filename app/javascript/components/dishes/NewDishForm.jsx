@@ -9,7 +9,7 @@ const NewDishForm = (props) => {
 
   const [formFields, setFormFields] = useState({
     name: "",
-    meal: "",
+    meal_ids: [],
     servings: "",
     recipe: ""
   });
@@ -22,6 +22,17 @@ const NewDishForm = (props) => {
     newFormFields[event.target.name] = event.target.value;
     setFormFields(newFormFields);
   }
+
+  const onMealCheck = (event) => {
+    const meal_id = event.target.name;
+    console.log(meal_id);
+    const newFormFields = {
+      ...formFields,
+    }
+    console.log(newFormFields);
+    newFormFields.meal_ids.push(meal_id);
+    setFormFields(newFormFields);
+  };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -48,16 +59,7 @@ const NewDishForm = (props) => {
             className="form-control"
           />
         </div>
-        <div>
-          <label htmlFor="meal">Meal Type:</label>
-          <input
-            id="meal"
-            name="meal"
-            onChange={onInputChange}
-            value={formFields.meal}
-            className="form-control"
-          />
-        </div>
+        
         <div>
           <label htmlFor="servings">Servings:</label>
           <select
@@ -75,9 +77,49 @@ const NewDishForm = (props) => {
             <option value="6">6</option>
             <option value="7">7</option>
             <option value="8">8</option>
-
           </select>
         </div>
+
+        <div className="form-group mt-3">
+          <div className="form-check">
+            <input 
+              className="form-check-input" 
+              type="checkbox" 
+              id="breakfast"
+              name="1"
+              onChange={onMealCheck}
+            />
+            <label className="form-check-label" htmlFor="breakfast">
+              Breakfast
+            </label>
+          </div>
+          <div className="form-check">
+            <input 
+              className="form-check-input" 
+              type="checkbox" 
+              id="lunch"
+              name="2"
+              onChange={onMealCheck}
+            />
+            <label className="form-check-label" htmlFor="lunch">
+              Lunch
+            </label>
+          </div>
+          <div className="form-check">
+            <input 
+              className="form-check-input" 
+              type="checkbox" 
+              id="dinner"
+              name="3"
+              onChange={onMealCheck}
+            />
+            <label className="form-check-label" htmlFor="dinner">
+              Dinner
+            </label>
+          </div>
+          
+        </div>
+
         <div>
           <label htmlFor="recipe">Recipe:</label>
           <textarea

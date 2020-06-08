@@ -30,7 +30,8 @@ class Api::DishesController < ApplicationController
     dish = Dish.new(dish_params) 
     if dish.save
       render json: dish.as_json(
-        only: [:id, :name, :meal, :servings, :recipe]
+        only: [:id, :name, :meals, :servings, :recipe],
+        include: {:meals => { :only => [:id, :name] }}
       ), status: :created  
       # redirect_to: dish_path(dish)
     else 
@@ -42,6 +43,6 @@ class Api::DishesController < ApplicationController
   private
 
   def dish_params
-    params.permit(:name, :meals, :servings, :recipe)
+    params.permit(:name, :servings, :recipe, meal_ids: [])
   end
 end
