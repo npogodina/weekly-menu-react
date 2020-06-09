@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
 const EditDishForm = (props) => {
 
   const [formFields, setFormFields] = useState({
+    id: props.dish.id,
     name: props.dish.name,
     meal_ids: props.dish.meals.map(meal => meal.id),
     servings: props.dish.servings,
-    recipe: props.dish.recipe
+    recipe: props.dish.recipe,
+    meals: []
   });
 
   console.log(formFields);
@@ -31,9 +34,10 @@ const EditDishForm = (props) => {
     setFormFields(newFormFields);
   };
 
+  let history = useHistory();
   const onFormSubmit = (event) => {
     event.preventDefault();
-    props.addDishCallback(formFields);
+    props.editDishCallback(formFields);
     history.push(`/dishes/`)
   };
 
@@ -132,7 +136,7 @@ const EditDishForm = (props) => {
 
         <input
           type="submit"
-          value="Add Dish"
+          value="Edit Dish"
           className="btn btn-primary mt-3"
         />
       </form>

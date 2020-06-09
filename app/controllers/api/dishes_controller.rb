@@ -36,11 +36,22 @@ class Api::DishesController < ApplicationController
       # redirect_to: dish_path(dish)
     else 
       render json: { errors: dish.errors.messages }, status: :bad_request
-      return
     end
   end
 
-  
+  def update
+    dish = Dish.find_by(id: params[:id])
+    if dish.nil?
+      render json: { errors: "Dish not found" }, status: :not_found
+    elsif dish.update(dish_params)
+      render json: dish.as_json(
+        only: [:id, :name, :meals, :servings, :recipe],
+        include: {:meals => { :only => [:id, :name] }}
+      ), status: :ok  
+    else 
+      render json: { errors: dish.errors.messages }, status: :bad_request
+    end
+  end
 
   private
 

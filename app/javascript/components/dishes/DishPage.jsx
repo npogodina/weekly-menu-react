@@ -48,7 +48,7 @@ const DishPage = (props) => {
       );
     } else {
       return (
-        <EditDishForm dish={dish}/>
+        <EditDishForm dish={dish} editDishCallback={props.editDishCallback}/>
       )
     }
   } else {

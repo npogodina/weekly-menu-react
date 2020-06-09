@@ -11,7 +11,7 @@ import Navbar from "./Navbar";
 import DishPage from "./dishes/DishPage";
 import NewDishForm from "./dishes/NewDishForm";
 
-const API_DISHES_INDEX = "http://localhost:3000/api/dishes"
+const API_DISHES_INDEX = "http://localhost:3000/api/dishes";
 
 const App = () => {
 
@@ -43,12 +43,22 @@ const App = () => {
       });
   }
 
-  const editDish = (dish) => {
-    axios.post(API_DISHES_INDEX, dish)
+  const editDish = (editedDish) => {
+    let url = "http://localhost:3000/api/dishes/" + editedDish.id;
+    axios.patch(url, editedDish)
       .then((response) => {
-        // What should we do when we know the post request worked?
-        const updatedData = [...dishList, response.data];
-        setDishList(updatedData);
+        const editedDishList = [];
+
+        dishList.forEach((dish) => {
+          if (dish.id === editedDish.id) {
+            editedDishList.push(response.data);
+          } else {
+            editedDishList.push(dish);
+          }
+        });
+    
+        setDishList(editedDishList);
+
         // setErrorMessage('');
       })
       .catch((error) => {
@@ -77,7 +87,7 @@ const App = () => {
           } />
 
           <Route exact path="/dishes/:id" render={() => 
-            <DishPage dishList={dishList}/>
+            <DishPage dishList={dishList} editDishCallback={editDish}/>
           } />
 
         </Switch> 
@@ -86,4 +96,4 @@ const App = () => {
   );
 }
 
-export default App
+export default App;
