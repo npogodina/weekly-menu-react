@@ -40,6 +40,8 @@ class Api::DishesController < ApplicationController
     end
   end
 
+  
+
   private
 
   def dish_params

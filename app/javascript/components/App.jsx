@@ -43,6 +43,20 @@ const App = () => {
       });
   }
 
+  const editDish = (dish) => {
+    axios.post(API_DISHES_INDEX, dish)
+      .then((response) => {
+        // What should we do when we know the post request worked?
+        const updatedData = [...dishList, response.data];
+        setDishList(updatedData);
+        // setErrorMessage('');
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  }
+
   return (
     <div>
       <BrowserRouter>
