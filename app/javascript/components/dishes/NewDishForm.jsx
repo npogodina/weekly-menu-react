@@ -10,8 +10,14 @@ const NewDishForm = (props) => {
   const [formFields, setFormFields] = useState({
     name: "",
     meal_ids: [],
-    servings: "",
+    servings: 1,
     recipe: ""
+  });
+
+  const [mealFields, setMealFields] = useState({
+    1: false,
+    2: false,
+    3: false
   });
 
   // event handlers
@@ -24,17 +30,26 @@ const NewDishForm = (props) => {
   }
 
   const onMealCheck = (event) => {
-    const meal_id = event.target.name;
-    console.log(meal_id);
-    const newFormFields = {
-      ...formFields,
+    const newMealFields = {
+      ...mealFields
     }
-    console.log(newFormFields);
-    newFormFields.meal_ids.push(meal_id);
-    setFormFields(newFormFields);
+    newMealFields[event.target.name] = !newMealFields[event.target.name];
+    setMealFields(newMealFields);
   };
 
   const onFormSubmit = (event) => {
+    const newFormFields = {
+      ...formFields,
+    }
+
+    for (const meal in mealFields) {
+      if (mealFields[meal]){
+        newFormFields.meal_ids.push(meal)
+      };
+    };
+
+    setFormFields(newFormFields);
+
     event.preventDefault();
     props.addDishCallback(formFields);
     history.push(`/dishes/`)

@@ -26,6 +26,7 @@ const EditDishForm = (props) => {
   }
 
   const onMealCheck = (event) => {
+    
     const meal_id = event.target.name;
     const newFormFields = {
       ...formFields,
@@ -48,10 +49,7 @@ const EditDishForm = (props) => {
     <h1>Edit dish</h1>
     <p>Please provide the following information:</p>
 
-      <form
-        className=""
-        onSubmit={onFormSubmit}
-      >
+      <form className="" onSubmit={onFormSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
           <input
