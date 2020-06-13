@@ -1,31 +1,26 @@
 [
   {
     "name": "Scrambled Eggs With Veggies",
-    "meal": "Breakfast",
     "servings": 2,
     "recipe": "Saute veggies of your choice until tender. Whisk eggs with salt and pepper. Add eggs to veggies and cook a couple more minutes."
   },
   {
     "name": "Oatmeal With Fruit And Honey",
-    "meal": "Breakfast",
     "servings": 3,
     "recipe": "Cook oatmeal with milk or water (can do 50/50). Added fruit and honey to taste."
   },
   {
     "name": "Polenta",
-    "meal": "Dinner",
     "servings": 6,
     "recipe": "Cook polenta. Mix with diced green onions and cheddar cheese. Move half into a casserole dish. Add a layer of black beans and a layer of your favorite salsa. Cover with remaining polenta. Bake for 40 minutes until browned."
   },
   {
     "name": "Salad Under The Tuscan Sun",
-    "meal": "Lunch",
     "servings": 2,
     "recipe": "Add sun-dried tomatoes, sliced avocado, tofu and dijon mustard vinegrette to a salad mix of your choice."
   },
   {
     "name": "Split Pea Soup",
-    "meal": "Lunch",
     "servings": 4,
     "recipe": "Mix 4 cups stock with 8oz split peas. Add diced potato, carrots and onions. Cook in the Instant Pot on manual for 15 minutes."
   }
