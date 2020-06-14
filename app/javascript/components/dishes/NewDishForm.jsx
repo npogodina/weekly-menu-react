@@ -60,6 +60,14 @@ const NewDishForm = (props) => {
     history.push(`/dishes/`)
   };
 
+  const addIngredient = (ingredient) => {
+    const newIngredients = {
+      ...ingredients,
+      1: ingredient
+    };
+    setIngredients(newIngredients);
+  };
+
   return (
     <div className="container mt-5">
     <h1>Add your dish!</h1>
@@ -161,7 +169,7 @@ const NewDishForm = (props) => {
 
       </form>
 
-      <IngredientForm />
+      <IngredientForm addIngredientCallback={addIngredient}/>
 
     </div>
   );
