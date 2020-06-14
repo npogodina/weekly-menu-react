@@ -50,7 +50,8 @@ const DishPage = (props) => {
               <li className="list-group-item">Meals: {meals.join(", ")} </li>
               <li className="list-group-item">Recipe: {dish.recipe}</li>
             </ul> 
-            <button className="btn btn-primary" onClick={displayEditForm}>Edit</button>
+            <button className="btn btn-primary mr-2" onClick={displayEditForm}>Edit</button>
+            <button className="btn btn-primary">Add Ingredient</button>
           </div>
           
           <h3 className="text-center">Ingredients</h3>
