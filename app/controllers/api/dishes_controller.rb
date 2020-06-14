@@ -3,8 +3,10 @@ class Api::DishesController < ApplicationController
 
   def index
     dishes = Dish.order(:name).as_json(
-      only: [:id, :name, :servings, :recipe, :meals],
-      include: {:meals => { :only => [:id, :name] }}
+      only: [:id, :name, :servings, :recipe, :meals, :ingredients],
+      include: {:meals => { :only => [:id, :name] }, 
+                :ingredients => {:only => [:id, :quantity] }
+              }
     )
     render json: dishes, status: :ok
   end
