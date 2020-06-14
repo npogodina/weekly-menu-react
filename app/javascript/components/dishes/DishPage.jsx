@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import EditDishForm from './EditDishForm';
+import Ingredient from './Ingredient';
 
 import PropTypes from 'prop-types';
 
@@ -24,6 +25,15 @@ const DishPage = (props) => {
     });
   }
 
+  let ingredientComponents = []
+  if (dish) {
+    ingredientComponents = dish.ingredients.map((ingredient) => {
+      return(
+        <Ingredient key={ingredient.id} name={ingredient.name} quantity={ingredient.quantity} />
+      );
+    });
+  }
+
   const [formMode, setFormMode] = useState(false);
   const displayEditForm = () => {
     setFormMode(true);
@@ -44,6 +54,20 @@ const DishPage = (props) => {
           </div>
           
           <h3 className="text-center">Ingredients</h3>
+          <table className="table">
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              { ingredientComponents }
+            
+            </tbody>
+          </table>
         </div>
       );
     } else {
