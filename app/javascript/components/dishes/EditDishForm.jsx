@@ -11,10 +11,13 @@ const EditDishForm = (props) => {
     meal_ids: props.dish.meals.map(meal => meal.id),
     servings: props.dish.servings,
     recipe: props.dish.recipe,
-    meals: []
   });
 
-  console.log(formFields);
+  const [mealFields, setMealFields] = useState({
+    1: formFields.meal_ids.includes(1) ? true : false,
+    2: formFields.meal_ids.includes(2) ? true : false,
+    3: formFields.meal_ids.includes(3) ? true : false
+  });
 
   // event handlers
   const onInputChange = (event) => {
@@ -26,12 +29,23 @@ const EditDishForm = (props) => {
   }
 
   const onMealCheck = (event) => {
-    
-    const meal_id = event.target.name;
-    const newFormFields = {
-      ...formFields,
+    const newMealFields = {
+      ...mealFields
     }
-    newFormFields.meal_ids.push(meal_id);
+    newMealFields[event.target.name] = !newMealFields[event.target.name];
+    setMealFields(newMealFields);
+
+    let newFormFields = {
+      ...formFields,
+      meal_ids: []
+    }
+
+    for (const meal in newMealFields) {
+      if (newMealFields[meal]){
+        newFormFields.meal_ids.push(meal)
+      };
+    };
+
     setFormFields(newFormFields);
   };
 
@@ -41,8 +55,6 @@ const EditDishForm = (props) => {
     props.editDishCallback(formFields);
     history.push(`/dishes/`)
   };
-
-  console.log(props);
   
   return (
     <div className="container mt-5">
@@ -88,6 +100,7 @@ const EditDishForm = (props) => {
               type="checkbox" 
               id="breakfast"
               name="1"
+              checked={mealFields[1]}
               onChange={onMealCheck}
             />
             <label className="form-check-label" htmlFor="breakfast">
@@ -100,6 +113,7 @@ const EditDishForm = (props) => {
               type="checkbox" 
               id="lunch"
               name="2"
+              checked={mealFields[2]}
               onChange={onMealCheck}
             />
             <label className="form-check-label" htmlFor="lunch">
@@ -112,6 +126,7 @@ const EditDishForm = (props) => {
               type="checkbox" 
               id="dinner"
               name="3"
+              checked={mealFields[3]}
               onChange={onMealCheck}
             />
             <label className="form-check-label" htmlFor="dinner">

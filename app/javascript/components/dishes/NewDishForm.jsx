@@ -49,6 +49,7 @@ const NewDishForm = (props) => {
     };
 
     setFormFields(newFormFields);
+    console.log(formFields);
 
     event.preventDefault();
     props.addDishCallback(formFields);
