@@ -33,7 +33,7 @@ const App = () => {
     axios.post(API_DISHES_INDEX, dish)
       .then((response) => {
         // What should we do when we know the post request worked?
-        const updatedData = [...dishList, response.data];
+        const updatedData = [response.data, ...dishList];
         setDishList(updatedData);
         // setErrorMessage('');
       })
