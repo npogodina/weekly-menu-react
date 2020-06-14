@@ -5,7 +5,7 @@ class Api::DishesController < ApplicationController
     dishes = Dish.order(:name).as_json(
       only: [:id, :name, :servings, :recipe, :meals, :ingredients],
       include: {:meals => { :only => [:id, :name] }, 
-                :ingredients => {:only => [:id, :quantity] }
+                :ingredients => {:only => [:id, :name, :quantity] }
               }
     )
     render json: dishes, status: :ok
