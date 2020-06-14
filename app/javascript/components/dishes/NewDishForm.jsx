@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
+import IngredientForm from './IngredientForm';
 
 const NewDishForm = (props) => {
 
@@ -11,7 +12,8 @@ const NewDishForm = (props) => {
     name: "",
     meal_ids: [],
     servings: 1,
-    recipe: ""
+    recipe: "",
+    ingredients: []
   });
 
   const [mealFields, setMealFields] = useState({
@@ -19,6 +21,8 @@ const NewDishForm = (props) => {
     2: false,
     3: false
   });
+
+  const [ingredients, setIngredients] = useState({})
 
   // event handlers
   const onInputChange = (event) => {
@@ -150,9 +154,15 @@ const NewDishForm = (props) => {
         <input
           type="submit"
           value="Add Dish"
-          className="btn btn-primary mt-3"
+          className="btn btn-primary mt-3 mr-3 mb-3"
         />
+        
+        {/* <button className="btn btn-primary mt-3">Add Ingredient</button> */}
+
       </form>
+
+      <IngredientForm />
+
     </div>
   );
 };
