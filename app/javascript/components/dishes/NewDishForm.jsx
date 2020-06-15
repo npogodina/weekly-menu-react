@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import IngredientForm from './IngredientForm';
+import Ingredient from './Ingredient';
 
 const NewDishForm = (props) => {
 
@@ -22,7 +23,7 @@ const NewDishForm = (props) => {
     3: false
   });
 
-  const [ingredients, setIngredients] = useState({})
+  const [ingredients, setIngredients] = useState([]);
 
   // event handlers
   const onInputChange = (event) => {
@@ -56,17 +57,45 @@ const NewDishForm = (props) => {
     console.log(formFields);
 
     event.preventDefault();
-    props.addDishCallback(formFields);
+    props.addDishCallback(formFields, ingredients);
     history.push(`/dishes/`)
   };
 
   const addIngredient = (ingredient) => {
-    const newIngredients = {
-      ...ingredients,
-      1: ingredient
-    };
+    const newIngredients = [...ingredients];
+    newIngredients.push(ingredient);
     setIngredients(newIngredients);
   };
+
+  let ingredientComponentsTable = null;
+
+  if (ingredients.length > 0){
+  
+    const ingredientComponents = ingredients.map((ingredient, i) => {
+      return(
+        <Ingredient key={i} name={ingredient.name} quantity={ingredient.quantity} />
+      );
+    });
+
+   ingredientComponentsTable = (
+    <div>
+      <h3 className="text-center">Ingredients</h3>
+      <table className="table">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ingredientComponents}
+        </tbody>
+      </table>
+    </div>
+   )
+  }
 
   return (
     <div className="container mt-5">
@@ -170,6 +199,7 @@ const NewDishForm = (props) => {
       </form>
 
       <IngredientForm addIngredientCallback={addIngredient}/>
+      {ingredientComponentsTable}
 
     </div>
   );

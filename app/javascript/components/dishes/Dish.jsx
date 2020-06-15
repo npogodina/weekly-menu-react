@@ -2,8 +2,6 @@ import React from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-// import './Student.css';
-
 const Dish = (props) => {
 
   let history = useHistory();
@@ -12,29 +10,6 @@ const Dish = (props) => {
     // e.preventDefault();
     history.push(`/dishes/${props.id}`)
   }
-
-  // Event callback functions
-  // const onButtonClick = () => {
-  //   const updatedStudent = {
-  //     fullName: props.fullName,
-  //     birthday: props.birthday,
-  //     email: props.email,
-  //     present: !props.present,
-  //     id: props.id,
-  //   }
-  //   props.onUpdateStudent(updatedStudent);
-  // }
-
-  // const onFullNameInputChange = (event) => {
-  //   const fullName = event.target.value;
-  //   props.onUpdateStudent({
-  //     fullName,
-  //     birthday: props.birthday,
-  //     email: props.email,
-  //     present: props.present,
-  //     id: props.id,
-  //   });
-  // };
 
   let meals = [];
 

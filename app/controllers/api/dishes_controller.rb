@@ -30,7 +30,21 @@ class Api::DishesController < ApplicationController
   # end
 
   def create
-    dish = Dish.new(dish_params) 
+    dish = Dish.new(dish_params[:dish])
+    dish.save
+    dish.reload
+    food_item = FoodItem.last
+    
+    dish_params[:ingredients].each do |ingredient_hash|
+      ingredient = Ingredient.new(
+        name: ingredient_hash[:name],
+        quantity: ingredient_hash[:quantity],
+        dish: dish,
+        food_item: food_item
+      )
+      ingredient.save
+    end
+    
     if dish.save
       render json: dish.as_json(
         only: [:id, :name, :meals, :servings, :recipe],
@@ -58,6 +72,9 @@ class Api::DishesController < ApplicationController
   private
 
   def dish_params
-    params.permit(:name, :servings, :recipe, meal_ids: [])
+    params.permit(:ingredients => [:name, :quantity], 
+                  :dish => [:name, :servings, :recipe, meal_ids: []])
+
+    # params.require(:foo).permit(:bar, {:baz => [:x, :y]})
   end
 end

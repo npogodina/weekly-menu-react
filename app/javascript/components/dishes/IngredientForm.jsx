@@ -18,7 +18,10 @@ const IngredientForm = (props) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     props.addIngredientCallback(formFields);
-    
+    setFormFields({
+      name: "",
+      quantity: ""
+    });
   };
 
   return (

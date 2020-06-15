@@ -27,11 +27,13 @@ const DishPage = (props) => {
 
   let ingredientComponents = []
   if (dish) {
-    ingredientComponents = dish.ingredients.map((ingredient) => {
-      return(
-        <Ingredient key={ingredient.id} name={ingredient.name} quantity={ingredient.quantity} />
-      );
-    });
+    if (dish.ingredients) {
+      ingredientComponents = dish.ingredients.map((ingredient) => {
+        return(
+          <Ingredient key={ingredient.id} name={ingredient.name} quantity={ingredient.quantity} />
+        );
+      });
+    };
   }
 
   const [formMode, setFormMode] = useState(false);

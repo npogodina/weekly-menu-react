@@ -29,8 +29,13 @@ const App = () => {
       });
   }, []);
 
-  const addDish = (dish) => {
-    axios.post(API_DISHES_INDEX, dish)
+  const addDish = (dish, ingredients) => {
+    const data = {
+      dish: dish,
+      ingredients: ingredients
+    }
+    console.log(data);
+    axios.post(API_DISHES_INDEX, data)
       .then((response) => {
         // What should we do when we know the post request worked?
         const updatedData = [response.data, ...dishList];
