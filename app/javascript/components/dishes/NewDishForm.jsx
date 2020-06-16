@@ -67,13 +67,25 @@ const NewDishForm = (props) => {
     setIngredients(newIngredients);
   };
 
+  const removeIngredient = (name) => {
+    const newIngredients = ingredients.filter((ingredient) => {
+      return ingredient.name !== name;
+    }); 
+    setIngredients(newIngredients);
+  }
+
   let ingredientComponentsTable = null;
 
   if (ingredients.length > 0){
   
     const ingredientComponents = ingredients.map((ingredient, i) => {
       return(
-        <Ingredient key={i} name={ingredient.name} quantity={ingredient.quantity} />
+        <Ingredient key={i} 
+                    name={ingredient.name} 
+                    quantity={ingredient.quantity} 
+                    addIngredientCallback={addIngredient}
+                    removeIngredientCallback={removeIngredient}
+        />
       );
     });
 
@@ -96,6 +108,7 @@ const NewDishForm = (props) => {
     </div>
    )
   }
+
 
   return (
     <div className="container mt-5">
