@@ -32,10 +32,14 @@ class Api::DishesController < ApplicationController
   def create
     dish = Dish.new(dish_params[:dish])
     dish.save
-    dish.reload
-    food_item = FoodItem.last
-    
+    dish.reload    
+
     dish_params[:ingredients].each do |ingredient_hash|
+      food_item = FoodItem.find_by(name: ingredient_hash[:name])
+      if food_item.nil?
+        food_item = FoodItem.new(name: ingredient_hash[:name])
+      end
+
       ingredient = Ingredient.new(
         name: ingredient_hash[:name],
         quantity: ingredient_hash[:quantity],
@@ -48,7 +52,8 @@ class Api::DishesController < ApplicationController
     if dish.save
       render json: dish.as_json(
         only: [:id, :name, :meals, :servings, :recipe],
-        include: {:meals => { :only => [:id, :name] }}
+        include: {:meals => { :only => [:id, :name] },
+                  :ingredients => { :only => [:id, :name, :quantity] }}
       ), status: :created  
     else 
       render json: { errors: dish.errors.messages }, status: :bad_request
