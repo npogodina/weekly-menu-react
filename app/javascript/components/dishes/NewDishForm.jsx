@@ -97,7 +97,6 @@ const NewDishForm = (props) => {
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Quantity</th>
-            <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
